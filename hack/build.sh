@@ -61,18 +61,18 @@ dirs=${VERSION:-$VERSIONS}
 for dir in ${dirs}; do
   case " $OPENSHIFT_NAMESPACES " in
     *\ ${dir}\ *)
-      NAMESPACE="openshift/"
+      NAMESPACE="mid/"
       ;;
     *)
       if [ "${OS}" == "centos7" ]; then
-        NAMESPACE="centos/"
+        NAMESPACE="mid/"
       else
         # we don't test rhel versions of SCL owned images
         if [[ "${SKIP_RHEL_SCL}" == "1" ]]; then
           echo "Skipping rhel scl image ${BASE_IMAGE_NAME}-${dir//./}-{$OS}"
           continue
         fi
-        NAMESPACE="rhscl/"
+        NAMESPACE="mid/"
       fi
   esac
 

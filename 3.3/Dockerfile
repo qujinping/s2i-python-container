@@ -1,6 +1,6 @@
 # This image provides a Python 3.3 environment you can use to run your Python
 # applications.
-FROM openshift/base-centos7
+FROM core/builder-base-centos7
 
 MAINTAINER SoftwareCollections.org <sclorg@redhat.com>
 
@@ -17,6 +17,8 @@ LABEL io.k8s.description="Platform for building and running Python 3.3 applicati
       io.k8s.display-name="Python 3.3" \
       io.openshift.expose-services="8080:http" \
       io.openshift.tags="builder,python,python33"
+
+USER root
 
 RUN yum install -y centos-release-scl && \
     INSTALL_PKGS="python33 python33-python-devel python33-python-setuptools nss_wrapper httpd httpd-devel \
@@ -46,7 +48,7 @@ RUN source scl_source enable python33 && \
 # In order to drop the root user, we have to make some directories world
 # writable as OpenShift default security model is to run the container under
 # random UID.
-RUN chown -R 1001:0 /opt/app-root && chmod -R ug+rwx /opt/app-root
+RUN chown -R 1001:0 /opt/app-root && chmod -R og+rwx /opt/app-root
 
 USER 1001
 

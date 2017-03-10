@@ -1,6 +1,6 @@
 # This image provides a Python 3.5 environment you can use to run your Python
 # applications.
-FROM centos/s2i-base-centos7
+FROM core/builder-base-centos7
 
 MAINTAINER SoftwareCollections.org <sclorg@redhat.com>
 
@@ -17,6 +17,8 @@ LABEL io.k8s.description="Platform for building and running Python 3.5 applicati
       io.k8s.display-name="Python 3.5" \
       io.openshift.expose-services="8080:http" \
       io.openshift.tags="builder,python,python35,rh-python35"
+
+USER root
 
 RUN yum install -y centos-release-scl-rh && \
     yum-config-manager --enable centos-sclo-rh-testing && \
