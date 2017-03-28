@@ -57,6 +57,7 @@ fi
 
 # Fix source directory permissions
 fix-permissions ./
+copy-stiscripts /opt/app-root/scripts/
 # set permissions for any installed artifacts
 # fix-permissions /opt/app-root
 
